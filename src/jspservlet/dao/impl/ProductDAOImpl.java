@@ -32,8 +32,8 @@ public class ProductDAOImpl implements ProductDAO{
 			System.out.println(e.getMessage());
 		}finally{
 			dbc.close();
-			return proList;
 		}
+		return proList;
 	}
 	public  ArrayList<Product> quePro(String str) throws Exception{
 		String sql = "select * from product where pro_name like \"%\"?\"%\"";
@@ -60,19 +60,33 @@ public class ProductDAOImpl implements ProductDAO{
 			System.out.println(e.getMessage()+"SQL excep");
 		}finally{
 			dbc.close();
-			return proList;
 		}
+		return proList;
 	}
 	@Override
 	public Product getProductById(String id) throws Exception {
-		String sql = "select * from product where pro_id=" + id;
+		String sql = "select * from product where pro_id=?";
 		PreparedStatement pstmt = null;
 		DBConnect dbc = null;
-		Product product = new Product();
 		try {
 			dbc = new DBConnect();
 			pstmt = dbc.getConnection().prepareStatement(sql);
-			pstmt.setString(1,  str);
+			pstmt.setString(1,  id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getString("pro_id"));
+				product.setName(rs.getString("pro_name"));
+				product.setImage(rs.getString("pro_image"));
+				product.setPrice(rs.getDouble("pro_price"));
+				return product;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			dbc.close();
 		}
+		
+		return null;
 	}
 }

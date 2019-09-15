@@ -2,26 +2,24 @@ package jspservlet.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import jspservlet.dao.ProductDAO;
 import jspservlet.dao.impl.ProductDAOImpl;
 import jspservlet.vo.Product;
 
 /**
- * Servlet implementation class ProductServlet
+ * Servlet implementation class Buy
  */
-public class ProductServlet extends HttpServlet {
+public class Buy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductServlet() {
+    public Buy() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +35,18 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductDAO dao = new ProductDAOImpl();
 		Product product = null;
 		try {
-			ProductDAO dao = new ProductDAOImpl();
 			product = dao.getProductById(request.getParameter("product_id"));
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if (product == null) {
 			response.sendRedirect("shop1.jsp");
 		} else {
-			request.getSession().setAttribute("product_selected", product);
-			response.sendRedirect("product.jsp");
+			request.getSession().setAttribute("product_to_buy", product);
+			response.sendRedirect("checkout.jsp");
 		}
 	}
 

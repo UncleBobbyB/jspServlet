@@ -1936,6 +1936,42 @@ p.cart {
   line-height: 1.8em;
 }
 
+h4.checkout_title {
+  color: #000;
+  margin-bottom: 0.5em;
+  font-size: 30px !important;
+  line-height: 1.2;
+  font-weight: normal;
+  margin-top: 0px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  /*border-bottom: 1px solid #ECECEC;*/
+  padding-bottom: 13px;
+}
+
+ul.checkout_ul {
+  border-bottom: 1px solid #ECECEC;
+}
+
+ul.checkout_ul>li {
+  display: inline;
+  margin-right: 25%;
+  font-size: 20px;
+}
+
+div.row_product_checkout {
+  height: 150px;
+  background: #FFF7FB;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: solid #ECECEC;
+}
+
+div.row_product_checkout_left {
+  max-height: 100%;
+  max-width: 25%;
+}
+
 /*--login--*/
 .login-page {
   border-right: 1px solid #EEE;

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Free Snow Bootstrap Website Template | Shop :: w3layouts</title>
+    <title>Produts</title>
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="css/style.css" rel='stylesheet' type='text/css' />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <%for (int i = 0; i < 4; i++) {
         	  %>
         	  <div class="col-md-3 shop_box">
-        	  	<a href="<%=request.getContextPath() %>/product?product_id=<%=products[i].getId() %>">
+        	  	<a href="<%=request.getContextPath() %>/product?product_id=<%=products[i + j * 4].getId() %>">
 					<img src=<%=products[i + j * 4].getImage() %> class="img-responsive" alt="" style="height:140px" />
 					<span class="new-box">
 						<span class="new-label">New</span>
@@ -110,14 +110,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="sale-label">Sale!</span>
 					</span>
 					<div class="shop_desc">
-					<h3><a href="<%=request.getContextPath() %>/product?product_id=<%=products[i].getId() %>" name=<%=products[i].getName() %> ><%=products[i + j * 4].getName() %></a></h3>
+					<h3><a href="<%=request.getContextPath() %>/product?product_id=<%=products[i + j * 4].getId() %>" name=<%=products[i + j * 4].getName() %> ><%=products[i + j * 4].getName() %></a></h3>
 					<span class="reducedfrom">$<%=(int)products[i + j * 4].getPrice() %></span>
 					<span class="actual">$<%=(int)(products[i + j * 4].getPrice()*0.7) %></span><br/>
 					<ul class="buttons">
             <%-- <li class="cart"><a href="#">Add to Cart</a></li> --%>
 						<li class="cart"><a href="" name="cart">Add to Cart</li>
 						<li class="cart"></li>
-						<li class="shop_btn"><a href="" name="buy">Buy Now</a></li>
+						<li class="shop_btn">
+						<a href="<%=request.getContextPath() %>/buy?product_id=<%=products[i + j * 4].getId() %>" name="buy">Buy Now</a></li>
 						<div class="clear"></div>
 					</ul>
 					</div>

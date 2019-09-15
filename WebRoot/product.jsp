@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page import="jspservlet.dao.impl.ProductDAOImpl, jspservlet.vo.Product" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -82,7 +83,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-md-9 single_left">
 				   <div class="single_image" name="product">
             <div class="product_display">
-               <img class="product_image" src="images/dog1.jpg" style="display: flex; align-items: center; justify-content: center;
+            <%Product product = (Product)request.getSession().getAttribute("product_selected");
+            %>
+               <img class="product_image" src="<%=product == null ?  "images/dog1.jpg" : product.getImage()%>" style="display: flex; align-items: center; justify-content: center;
                  max-width: 100%; max-height: 100%;"/>
            </div>
 					 </div>
@@ -137,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="col-md-3">
 				  <div class="box-info-product">
-					<p class="price2">$234</p>
+					<p class="price2">$<%=(int)(product.getPrice() * 0.7)%></p>
 					       <ul class="prosuct-qty">
 								<span>Quantity:</span>
 								<select>
