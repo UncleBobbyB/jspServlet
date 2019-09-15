@@ -28,6 +28,9 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product product = (new ProductDAOImpl()).getProductById(rs.getString("pro_id"));
+				if (product.getId() == null || "".equals(product.getId())) {
+					break;
+				}
 				TempProduct tp = new TempProduct();
 				tp.setProduct(product);
 				tp.setQty(rs.getInt("qty"));

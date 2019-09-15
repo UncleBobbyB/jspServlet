@@ -1,6 +1,6 @@
 <%@ page language="java"  import="java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="jspservlet.vo.Product" %>
+<%@ page import="jspservlet.vo.Product, javax.servlet.http.HttpSession, jspservlet.vo.TempProduct" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -19,6 +19,12 @@
      <div class="main">
       <div class="shop_top">
 		<div class="container">
+		<%Vector<TempProduct> products = (Vector<TempProduct>)session.getAttribute("products to display");
+				if (products == null || products.size() == 0) {
+				%>
+				<h4 class="title">Shopping cart is empty</h4>
+			<p class="cart">You have no items in your shopping cart.<br>Click<a href="index1.jsp"> here</a> to continue shopping</p>
+				<%} else { %>
 			<h4 class="checkout_title">Shoppingcart</h4>
 				<div class="row">
 					<ul class="checkout_ul">
@@ -44,8 +50,11 @@
           </form>
         </div>
 
+		<%} %>
 	     </div>
 	   </div>
 	  </div>
+	  <div class="footer">
+		</div>
 </body>
 </html>
