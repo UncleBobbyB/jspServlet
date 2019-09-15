@@ -67,7 +67,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <div class="login-title">
 	           		<h4 class="title">Registered Customers</h4>
 					<div id="loginbox" class="loginbox">
-						<form action="<%=request.getContextPath()%>/login" method="post" name="login" id="login-form">
+					<%String from = request.getHeader("referer");
+					from = from.substring(from.lastIndexOf("/") + 1);
+					%>
+						<form action="<%=request.getContextPath()%>/login?from=<%=from %>" method="post" name="login" id="login-form">
 						  <fieldset class="input">
 						    <p id="login-form-username">
 						      <label for="modlgn_username">Email</label>

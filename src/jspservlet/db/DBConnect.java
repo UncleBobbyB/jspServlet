@@ -7,7 +7,7 @@ public class DBConnect {
 	private final String DBDRIVER = "com.mysql.cj.jdbc.Driver";
 	private final String DBURL = "jdbc:mysql://localhost:3306/javawebDB?serverTimezone=UTC&useUnicode=true&characterEccoding=utf8";
 	private final String DBUSER = "root";
-	private final String DBPASSWORD = "666666";
+	private final String DBPASSWORD = "";
 	private Connection conn = null;
 	
 	public DBConnect(){

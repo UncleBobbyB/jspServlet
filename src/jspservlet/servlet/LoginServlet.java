@@ -32,7 +32,12 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("firstname",user.getFirstname());
 			session.setAttribute("lastname",user.getLastname());
 			session.setAttribute("email", user.getEmail());
-			res.sendRedirect("./index1.jsp");
+			String from = req.getParameter("from");
+			if (from == null) {
+				res.sendRedirect("./index1.jsp");
+			} else {
+				res.sendRedirect("./" + from);
+			}
 		}else{
 			req.setAttribute("firstname", null);
 			req.setAttribute("lastname", null);

@@ -1,10 +1,9 @@
 package jspservlet.vo;
 
-public class TempProducts {
+public class TempProduct {
 
 	private Product product;
-	private int number;
-	
+	private int qty;
 	
 	public Product getProduct() {
 		return product;
@@ -12,10 +11,10 @@ public class TempProducts {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public int getNumber() {
-		return number;
+	public int getQty() {
+		return qty;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setQty(int qty) {
+		this.qty = qty;
 	}
 }

@@ -48,6 +48,16 @@
     <servlet-name>ShopServlet</servlet-name>
     <url-pattern>/ShopServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>shoppingcartServlet</display-name>
+    <servlet-name>shoppingcartServlet</servlet-name>
+    <servlet-class>jspservlet.servlet.ShoppingcartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shoppingcartServlet</servlet-name>
+    <url-pattern>/ShoppingcartServlet</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>search</display-name>

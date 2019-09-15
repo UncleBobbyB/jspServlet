@@ -1,46 +1,51 @@
-<%@ page language="java" import="java.util.*" import="jspservlet.vo.Cart" pageEncoding="ISO-8859-1"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java"  import="java.util.*" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="jspservlet.vo.Product" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'ShoppingCart.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<head>
+<title>Checkout</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  </head>
-  
-  <body>
- 
-     <%
-    if(session.getAttribute("Cart")!=null){
-    ArrayList<Cart> arrGood=(ArrayList<Cart>)session.getAttribute("Cart");
-    for(int i=0;i<arrGood.size();i++){ %>
-    good name:<%=arrGood.get(i).getGoodName()%><br/>
-    good price:<%=arrGood.get(i).getPrice()%><br/>
-    <form method="post" action="./reducePurchase">
-    <input type="submit" name="<%=i%>" value="reuduce"/>
-    </form>
-    good number:<%=arrGood.get(i).getGoodNumber()%><br/>
-    <form method="post" action="./addPurchase">
-    <input type="submit" name="<%=i%>" value="add"/>
-    </form>
-    <%}}
-    %> 
-	<form method="post" action="./pay">
-	<input type="submit" name="pay" value="pay">
-	</form><br>
-  </body>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="js/jquery.min.js"></script>
+ </head>
+<body>
+	<jsp:include page="/header.jsp" />
+     <div class="main">
+      <div class="shop_top">
+		<div class="container">
+			<h4 class="checkout_title">Shoppingcart</h4>
+				<div class="row">
+					<ul class="checkout_ul">
+						<li>Product</li>
+						<li>Number</li>
+						<li>Price</li>
+					</ul>
+				</div>
+				<div class="row_product_checkout">
+					<div class="row_product_checkout_left">
+					</div>
+
+          <div class="row_product_checkout_middle">
+          </div>
+
+          <div class="row_product_checkout_right">
+          </div>
+				</div>
+
+        <div class="btn_form">
+          <form class="" action="" method="post">
+            <input type="submit" value="checkout" title="" name="product_checkout_buy_btn">
+          </form>
+        </div>
+
+	     </div>
+	   </div>
+	  </div>
+</body>
 </html>

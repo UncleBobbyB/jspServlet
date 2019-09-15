@@ -1970,6 +1970,29 @@ div.row_product_checkout {
 div.row_product_checkout_left {
   max-height: 100%;
   max-width: 25%;
+  display: inline-block;
+}
+
+h4.checkout_title_product_name {
+  display: inline;
+}
+
+div.row_product_checkout_middle {
+  max-height: 100%;
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+}
+
+div.row_product_checkout_right {
+  max-height: 100%;
+  width: 40%;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn_form form input[type="submit"]#product_checkout_buy_btn {
+  float: right !important;
 }
 
 /*--login--*/

@@ -1,44 +1,12 @@
 package jspservlet.vo;
 
-public class ShoppingCart {
+public class Shoppingcart {
 
-	private String user_id;
-	private String good_id;
-	private String id;
-	private int number;
+	private String email;
+	private String product_id;
+	private int quantity;
 	private int status;
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
-	public String getGood_id() {
-		return good_id;
-	}
-
-	public void setGood_id(String good_id) {
-		this.good_id = good_id;
-	}
-
-	public int getNumber() {
-		return number;
-	}
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public int getStatus() {
 		return status;
@@ -46,5 +14,29 @@ public class ShoppingCart {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(String product_id) {
+		this.product_id = product_id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

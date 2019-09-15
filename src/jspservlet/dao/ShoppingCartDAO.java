@@ -2,11 +2,16 @@ package jspservlet.dao;
 
 import java.util.Vector;
 
-import jspservlet.vo.ShoppingCart;
+import jspservlet.vo.Product;
+import jspservlet.vo.Shoppingcart;
+import jspservlet.vo.TempProduct;
 
-public interface ShoppingCartDAO {
+public interface ShoppingcartDAO {
 
-	public Vector<ShoppingCart> getProductsByUserId(String user_id, int status) throws Exception;
-	public Vector<ShoppingCart> getAllProducts(String user_id) throws Exception;
-	
+	Vector<TempProduct> getProductsByEmail(String email);
+	double totalPrice(String email);
+	int addProduct(String email, String pro_id, int qty) throws Exception;
+	int addProduct(String email, Product product, int qty);
+	int reduceProduct(String email, Product product);
+	int reduceProduct(String email, String pro_id) throws Exception;
 }

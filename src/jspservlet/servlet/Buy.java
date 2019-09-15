@@ -37,6 +37,11 @@ public class Buy extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDAO dao = new ProductDAOImpl();
 		Product product = null;
+		String email = (String)request.getSession().getAttribute("email");
+		if (email == null || "".equals(email)) {
+			response.sendRedirect("./login.jsp");
+			return ;
+		}
 		try {
 			product = dao.getProductById(request.getParameter("product_id"));
 		} catch (Exception e) {

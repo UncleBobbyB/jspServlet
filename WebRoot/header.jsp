@@ -12,7 +12,7 @@
             <ul class="nav" id="nav">
               <li><a href="index1.jsp" , id="Home-link">Home</a></li>
               <li><a href="<%=request.getContextPath() %>/ShopServlet" , id="Products-link">Products</a></li>
-
+              <li><a href="<%=request.getContextPath() %>/ShoppingcartServlet?what=display">Shoppingcart</a>  </li>
               <li><a href="team.html" , id="Team-link">Team</a></li>
               <li><a href="contact.html" , id="Contact-link">Contact</a></li>
               <div class="clear"></div>

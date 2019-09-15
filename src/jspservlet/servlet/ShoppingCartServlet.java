@@ -1,12 +1,16 @@
 package jspservlet.servlet;
 
 import java.io.IOException;
+import java.util.Vector;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import jspservlet.action.Action;
+import jspservlet.dao.impl.ShoppingcartDAOImpl;
+import jspservlet.vo.TempProduct;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -17,13 +21,13 @@ import javax.servlet.annotation.WebServlet;
 		name = "shoppingCartServlet",
 		urlPatterns = {"/shoppingcart"}
 		)
-public class ShoppingCartServlet extends HttpServlet {
+public class ShoppingcartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShoppingCartServlet() {
+    public ShoppingcartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,18 +43,19 @@ public class ShoppingCartServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String product_ids = String.valueOf(request.getSession().getAttribute("product_id"));
-		String action = String.valueOf(request.getSession().getAttribute("action"));
-		Action targetAction = null;
-		String path = null;
-		try {
-			if (product_ids == null || product_ids.equals("")) {
-				path = "login.jsp";
-			} else {
-				if (action.equals("deletebus")) {
-					targetAction = new DeleteShoppingCartAction();
-				}
-			}
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		if (email == null || "".equals(email)) {
+			response.sendRedirect("login.jsp");
+			return ;
+		}
+		String what = request.getParameter("what");
+		if (what.equals("checkout")) {
+			
+		} else if (what.equals("display")) {
+			Vector<TempProduct> products = (new ShoppingcartDAOImpl()).getProductsByEmail(email);
+			session.setAttribute("products to display", products);
+			response.sendRedirect("shoppingcart.jsp");
 		}
 	}
 

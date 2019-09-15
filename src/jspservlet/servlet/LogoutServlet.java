@@ -34,11 +34,15 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String from = request.getParameter("from");
 		session.setAttribute("firstname", null);
 		session.setAttribute("lastname", null);
 		session.setAttribute("email", null);
 		request.getSession().invalidate();
-		response.sendRedirect("index1.jsp");
+		if (from == null) {
+			from = "index1.jsp";
+		}
+		response.sendRedirect("./" + from);
 	}
 
 }
