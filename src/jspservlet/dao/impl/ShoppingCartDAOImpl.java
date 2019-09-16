@@ -266,7 +266,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		if (product == null) {
 			return 0;
 		}
-		boolean single = false;
+		int qty = 1;
 		int result = 0;
 		String sql = "select * from shoppingcart where email=? and pro_id=?";
 		DBConnect conn = null;
@@ -278,7 +278,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 			pstmt.setString(2, product.getId());
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				single = rs.getInt("qty") == 1;
+				qty = rs.getInt("qty");
 			}
 			pstmt.close();
 			rs.close();
@@ -288,8 +288,8 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 			conn.close();
 		}
 		
-		if (single) {
-			sql = "delete from shopping where email=? and pro_id=?";
+		if (qty == 1) {
+			sql = "delete from shoppingcart where email=? and pro_id=?";
 			pstmt = null;
 			try {
 				conn = new DBConnect();
@@ -304,13 +304,14 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				conn.close();
 			}
 		} else {
-			sql = "update shoppingcart where email=? and pro_id=?";
+			sql = "update shoppingcart set qty=? where email=? and pro_id=?";
 			pstmt = null;
 			try {
 				conn = new DBConnect();
 				pstmt = conn.getConnection().prepareStatement(sql);
-				pstmt.setString(1, email);
-				pstmt.setString(2, product.getId());
+				pstmt.setInt(1, qty - 1);
+				pstmt.setString(2, email);
+				pstmt.setString(3, product.getId());
 				result = pstmt.executeUpdate();
 				pstmt.close();
 			} catch (Exception ex) { 

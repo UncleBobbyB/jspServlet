@@ -69,6 +69,7 @@ public class ShoppingcartServlet extends HttpServlet {
 			try {
 				int result = (new ShoppingcartDAOImpl()).reduceProduct(email, request.getParameter("pro_id"));
 				assert(result > 0);
+				response.sendRedirect(request.getContextPath() + "/ShoppingcartServlet?what=display");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
