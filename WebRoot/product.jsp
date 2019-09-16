@@ -142,18 +142,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  <div class="box-info-product">
 					<p class="price2">$<%=(int)(product.getPrice() * 0.7)%></p>
 					       <ul class="prosuct-qty">
+					       <li>
 								<span>Quantity:</span>
-								<select>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-
+								<select id="select">
+									<option value=1>1</option>
+									<option value=2>2</option>
+									<option value=3>3</option>
+									<option value=4>4</option>
 								</select>
+							</li>
 							</ul>
-							<button type="submit" name="Submit" class="exclusive">
-							   <span>Add to cart</span>
-							</button>
+                <button type="submit" name="Submit" class="exclusive" id="cart_btn">
+                   <span>Add to cart</span>
+                </button>
+                <script type="text/javascript">
+                  btn = document.getElementById('cart_btn');
+                  btn.onclick = function() {
+                    var qty = document.getElementById('select');
+                    qty = qty.options[qty.selectedIndex].value;
+                    console.log(qty);
+                    window.location.href='<%=request.getContextPath() %>/ShoppingcartServlet?what=add&pro_id=<%=product.getId() %>&qty=' + qty;
+                  }
+                </script>
 				   </div>
 			   </div>
 			</div>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jspservlet.dao.impl.ProductDAOImpl;
 import jspservlet.dao.impl.ShoppingcartDAOImpl;
 import jspservlet.vo.TempProduct;
 
@@ -56,6 +57,21 @@ public class ShoppingcartServlet extends HttpServlet {
 			Vector<TempProduct> products = (new ShoppingcartDAOImpl()).getProductsByEmail(email);
 			session.setAttribute("products to display", products);
 			response.sendRedirect("shoppingcart.jsp");
+		} else if (what.equals("add")) {
+			try {
+				int result = (new ShoppingcartDAOImpl()).addProduct(email, request.getParameter("pro_id"), Integer.parseInt(request.getParameter("qty")));
+				assert(result > 0);
+				response.sendRedirect(request.getContextPath() + "/ShoppingcartServlet?what=display");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (what.equals("reduce")) {
+			try {
+				int result = (new ShoppingcartDAOImpl()).reduceProduct(email, request.getParameter("pro_id"));
+				assert(result > 0);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 

@@ -28,7 +28,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product product = (new ProductDAOImpl()).getProductById(rs.getString("pro_id"));
-				if (product.getId() == null || "".equals(product.getId())) {
+				if (product == null || product.getId() == null || "".equals(product.getId())) {
 					break;
 				}
 				TempProduct tp = new TempProduct();
@@ -95,7 +95,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		int cur_qty = 0;
 		Vector<TempProduct> products = getProductsByEmail(email);
 		for (TempProduct vproduct : products) {
-			if (vproduct.getProduct().getId() == product.getId()) {
+			if (vproduct.getProduct().getId().equals(product.getId())) {
 				in = true;
 				String sql = "select qty from shoppingcart where email=?";
 				PreparedStatement pstmt = null;
@@ -106,7 +106,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		}
 		int result = 0;
 		if (in) {
-			String sql = "update shoppingcart set qty=? where email=?";
+			String sql = "update shoppingcart set qty=? where email=? and pro_id=?";
 			PreparedStatement pstmt = null;
 			DBConnect conn = null;
 			try {
@@ -114,6 +114,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt = conn.getConnection().prepareStatement(sql);
 				pstmt.setInt(1, cur_qty + qty);
 				pstmt.setString(2, email);
+				pstmt.setString(3, pro_id);
 				result = pstmt.executeUpdate();
 				pstmt.close();
 			} catch (Exception ex) {
@@ -150,7 +151,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		int cur_qty = 0;
 		Vector<TempProduct> products = getProductsByEmail(email);
 		for (TempProduct vproduct : products) {
-			if (vproduct.getProduct().getId() == product.getId()) {
+			if (vproduct.getProduct().getId().equals(product.getId())) {
 				in = true;
 				String sql = "select qty from shoppingcart where email=?";
 				PreparedStatement pstmt = null;
