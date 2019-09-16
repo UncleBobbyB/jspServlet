@@ -5,16 +5,7 @@ public class Shoppingcart {
 	private String email;
 	private String product_id;
 	private int quantity;
-	private int status;
 
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
 	public String getProduct_id() {
 		return product_id;

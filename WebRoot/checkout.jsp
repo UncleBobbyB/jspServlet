@@ -77,7 +77,7 @@
 
         <div class="btn_form">
           <form class="" action="" method="post">
-            <input type="submit" value="buy now" title="" name="product_checkout_buy_btn">
+            <input type="submit" value="checkout" title="" name="product_checkout_buy_btn">
           </form>
         </div>
 

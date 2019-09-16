@@ -14,4 +14,5 @@ public interface ShoppingcartDAO {
 	int addProduct(String email, Product product, int qty);
 	int reduceProduct(String email, Product product);
 	int reduceProduct(String email, String pro_id) throws Exception;
+	int clearCart(String email);
 }

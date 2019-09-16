@@ -43,7 +43,7 @@ public class Buy extends HttpServlet {
 			return ;
 		}
 		try {
-			product = dao.getProductById(request.getParameter("product_id"));
+			product = dao.getProductById(request.getParameter("pro_id"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

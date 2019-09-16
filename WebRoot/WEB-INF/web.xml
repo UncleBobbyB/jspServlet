@@ -48,7 +48,7 @@
     <servlet-name>ShopServlet</servlet-name>
     <url-pattern>/ShopServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>shoppingcartServlet</display-name>
     <servlet-name>shoppingcartServlet</servlet-name>
@@ -117,5 +117,15 @@
   <servlet-mapping>
     <servlet-name>Buy</servlet-name>
     <url-pattern>/buy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>checkoutServlet</display-name>
+    <servlet-name>checkoutServlet</servlet-name>
+    <servlet-class>jspservlet.servlet.CheckoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>checkoutServlet</servlet-name>
+    <url-pattern>/CheckoutServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -324,5 +324,34 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		return result;
 	}
 
+	@Override
+	public int clearCart(String email) {
+		if (email == null || email.equals("")) {
+			return 0;
+		}
+		
+		Vector<TempProduct> products = getProductsByEmail(email);
+		String sql = "delet from shoppingcart where email=? and pro_id=?";
+		PreparedStatement pstmt = null;
+		DBConnect conn = null;
+		int result = 1;
+		try {
+			conn = new DBConnect();
+			pstmt = conn.getConnection().prepareStatement(sql);
+			for (TempProduct product : products) {
+				pstmt.setString(1, email);
+				pstmt.setString(2, product.getProduct().getId());
+				result &= pstmt.executeUpdate();
+			}
+			pstmt.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		
+		return result;
+	}
+
 
 }

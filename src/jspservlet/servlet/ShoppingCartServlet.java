@@ -52,7 +52,8 @@ public class ShoppingcartServlet extends HttpServlet {
 		}
 		String what = request.getParameter("what");
 		if (what.equals("checkout")) {
-			
+			System.out.println(request.getParameter("pro_id"));
+			response.sendRedirect(request.getContextPath() + "/buy?pro_id=" + request.getParameter("pro_id"));
 		} else if (what.equals("display")) {
 			Vector<TempProduct> products = (new ShoppingcartDAOImpl()).getProductsByEmail(email);
 			session.setAttribute("products to display", products);

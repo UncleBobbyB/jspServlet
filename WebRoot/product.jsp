@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="clear"> </div>
 							</ul> --%>
 							<div class="btn_form">
-							   <form>
+							   <form action="<%=request.getContextPath() %>/ShoppingcartServlet?what=checkout&pro_id=<%=product.getId() %>" method="post">
 								 <input type="submit" value="buy now" title="">
 							  </form>
 							</div>
