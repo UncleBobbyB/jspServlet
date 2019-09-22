@@ -123,7 +123,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				conn.close();
 			}
 		} else {
-			String sql = "insert into shoppingcart(email, pro_id, status, qty) values(?,?,?,?)";
+			String sql = "insert into shoppingcart(email, pro_id, qty) values(?,?,?)";
 			PreparedStatement pstmt = null;
 			DBConnect conn = null;
 			try {
@@ -131,8 +131,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt = conn.getConnection().prepareStatement(sql);
 				pstmt.setString(1, email);
 				pstmt.setString(2, product.getId());
-				pstmt.setInt(3, 0);
-				pstmt.setInt(4, qty);
+				pstmt.setInt(3, qty);
 				result = pstmt.executeUpdate();
 				pstmt.close();
 			} catch (Exception ex) { 
