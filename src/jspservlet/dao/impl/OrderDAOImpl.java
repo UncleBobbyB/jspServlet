@@ -13,7 +13,7 @@ public class OrderDAOImpl implements OrderDAO {
 		if (order.getEmail() == null || order.getEmail().equals("")) {
 			return 0;
 		}
-		String sql = "insert into order (email, pro_id, qty, price) value(?,?,?,?)";
+		String sql = "insert into `order` (email, pro_id, qty, price) value(?,?,?,?)";
 		PreparedStatement pstmt = null;
 		DBConnect conn = null;
 		int result = 0;
@@ -23,7 +23,7 @@ public class OrderDAOImpl implements OrderDAO {
 			pstmt.setString(1, order.getEmail());
 			pstmt.setString(2, order.getPro_id());
 			pstmt.setInt(3, order.getQty());
-			pstmt.setDouble(4, order.getPrice());
+			pstmt.setDouble(4, order.getPrice() * 0.7);
 			result = pstmt.executeUpdate();
 			pstmt.close();
 		} catch (Exception ex) { 

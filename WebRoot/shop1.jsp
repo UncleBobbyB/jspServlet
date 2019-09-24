@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="cart"><a href="<%=request.getContextPath() %>/ShoppingcartServlet?what=add&pro_id=<%=products[i + j * 4].getId() %>&qty=1" name="cart">Add to Cart</li>
 						<li class="cart"></li>
 						<li class="shop_btn">
-						<a href="<%=request.getContextPath() %>/buy?pro_id=<%=products[i + j * 4].getId() %>" name="buy">Buy Now</a></li>
+						<a href="<%=request.getContextPath() %>/checkout.jsp?pro_id=<%=products[i + j * 4].getId() %>" name="buy">Buy Now</a></li>
 						<div class="clear"></div>
 					</ul>
 					</div>

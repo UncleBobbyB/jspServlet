@@ -65,7 +65,7 @@
           </div>
 
           <div class="row_product_checkout_delete">
-            <form class="" action="" method="post">
+            <form class="" action="<%=request.getContextPath() %>/ShoppingcartServlet?what=delete&pro_id=<%=product.getProduct().getId() %>" method="post">
               <input type="submit" name="" value="Delete">
             </form>
           </div>
@@ -73,7 +73,7 @@
 			<%} %>
 
         <div class="btn_form">
-          <form class="" action="" method="post">
+          <form class="" action="<%=request.getContextPath() %>/ShoppingcartServlet?what=checkout" method="post">
             <input type="submit" value="checkout" title="" name="product_checkout_buy_btn">
           </form>
         </div>

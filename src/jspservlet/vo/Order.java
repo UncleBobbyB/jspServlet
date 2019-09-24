@@ -2,7 +2,7 @@ package jspservlet.vo;
 
 public class Order {
 
-	private String id;
+	private int id;
 	private String email;
 	private String pro_id;
 	private int qty;
@@ -33,10 +33,10 @@ public class Order {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 }

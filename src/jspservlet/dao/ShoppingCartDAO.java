@@ -15,4 +15,6 @@ public interface ShoppingcartDAO {
 	int reduceProduct(String email, Product product);
 	int reduceProduct(String email, String pro_id) throws Exception;
 	int clearCart(String email);
+	int deleteProduct(String email, String pro_id) throws Exception;
+	int deleteProduct(String email, Product product);
 }

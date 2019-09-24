@@ -59,7 +59,7 @@
                       <%=str + " " + str1%></a></h4>
                 </li>
                 <div class="login_buttons">
-                  <div class="check_button"><a href="checkout.html">Check out</a></div>
+                  <div class="check_button"><a href="shoppingcart.jsp">Check out</a></div>
                   <%if (str==null || str1 ==null || str == "" || str1 == "") { %>
                   <div class="login_button"><a href="login.jsp">Login</a></div>
                   <%} else { %>

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import jspservlet.dao.ShoppingcartDAO;
 import jspservlet.db.DBConnect;
 import jspservlet.vo.Product;
@@ -117,6 +119,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt.setString(3, pro_id);
 				result = pstmt.executeUpdate();
 				pstmt.close();
+				result = 1;
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
@@ -134,6 +137,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt.setInt(3, qty);
 				result = pstmt.executeUpdate();
 				pstmt.close();
+				result = 1;
 			} catch (Exception ex) { 
 				ex.printStackTrace();
 			} finally {
@@ -172,6 +176,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt.setString(3, product.getId());
 				result = pstmt.executeUpdate();
 				pstmt.close();
+				result = 1;
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
@@ -190,6 +195,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt.setInt(4, qty);
 				result = pstmt.executeUpdate();
 				pstmt.close();
+				result = 1;
 			} catch (Exception ex) { 
 				ex.printStackTrace();
 			} finally {
@@ -218,6 +224,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 			}
 			pstmt.close();
 			rs.close();
+			result = 1;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -330,7 +337,7 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 		}
 		
 		Vector<TempProduct> products = getProductsByEmail(email);
-		String sql = "delet from shoppingcart where email=? and pro_id=?";
+		String sql = "delete from shoppingcart where email=? and pro_id=?";
 		PreparedStatement pstmt = null;
 		DBConnect conn = null;
 		int result = 1;
@@ -342,6 +349,53 @@ public class ShoppingcartDAOImpl implements ShoppingcartDAO {
 				pstmt.setString(2, product.getProduct().getId());
 				result &= pstmt.executeUpdate();
 			}
+			pstmt.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int deleteProduct(String email, String pro_id) throws Exception { 
+		String sql = "delete from shoppingcart where email=? and pro_id=?";
+		DBConnect conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			conn = new DBConnect();
+			pstmt = conn.getConnection().prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, pro_id);
+			result = pstmt.executeUpdate();
+			pstmt.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public int deleteProduct(String email, Product product) {
+		if (product == null) {
+			return 0;
+		}
+		String sql = "delete from shoppingcart where email=? and pro_id=?";
+		DBConnect conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			conn = new DBConnect();
+			pstmt = conn.getConnection().prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, product.getId());
+			result = pstmt.executeUpdate();
 			pstmt.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();

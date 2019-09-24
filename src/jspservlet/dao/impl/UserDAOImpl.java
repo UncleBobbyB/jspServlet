@@ -58,48 +58,42 @@ public class UserDAOImpl implements UserDAO {
 //		}
 		return flag;
 	}
-	public int registerByUsername(User user) throws Exception {
-		int flag = 0;
-		String sql = "select * from userinfo where email = ?";
-		PreparedStatement pstmt = null;
-		DBConnect dbc =null;
-		try{
-			dbc = new DBConnect();
-			pstmt = dbc.getConnection().prepareStatement(sql);
-			pstmt.setString(1, user.getEmail());
-			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()){
-				flag =0;
-			}else{
-				flag =1;
-			}
-			rs.close();
-			pstmt.close();
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}finally{
-			dbc.close();
+
+	@Override
+	public int register(User user) {
+		if (user.getEmail() == null || "".equals(user.getEmail())) {
+			return -1;
 		}
-		return flag;
-	}
-	public void register(User user) throws Exception{
-		String sql = "insert userinfo values (?,?,?,?)";
+		if (user.getPassword() == null || user.getPassword().equals("")) {
+			return -2;
+		}
+		if (user.getPassword().length() < 6 || user.getPassword().length() >= 12) {
+			return -3;
+		}
+		for (String name : new String[] {user.getFirstname(), user.getLastname()}) {
+			if (name == null || "".equals(name)) {
+				return -4;
+			}
+		}
+		DBConnect conn = null;
+		String sql = "insert into userinfo (firstname, lastname, email, password) value(?,?,?,?)";
 		PreparedStatement pstmt = null;
-		DBConnect dbc =null;
-		try{
-			dbc = new DBConnect();
-			pstmt = dbc.getConnection().prepareStatement(sql);
+		int result = 0;
+		try {
+			conn = new DBConnect();
+			pstmt = conn.getConnection().prepareStatement(sql);
 			pstmt.setString(1, user.getFirstname());
 			pstmt.setString(2, user.getLastname());
 			pstmt.setString(3, user.getEmail());
 			pstmt.setString(4, user.getPassword());
-			pstmt.execute();
+			result = pstmt.executeUpdate();
 			pstmt.close();
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-		}finally {
-			dbc.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			conn.close();
 		}
+		
+		return result;
 	}
 }

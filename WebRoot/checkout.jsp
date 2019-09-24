@@ -1,6 +1,6 @@
 <%@ page language="java"  import="java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="jspservlet.vo.Product" %>
+<%@ page import="jspservlet.vo.Product, jspservlet.dao.impl.ProductDAOImpl" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="row_product_checkout">
 					<div class="row_product_checkout_left">
-					<%Product product = (Product)request.getSession().getAttribute("product_to_buy"); %>
+					<%Product product = (new ProductDAOImpl()).getProductById((String)request.getParameter("pro_id")); %>
 						<img src="<%=product.getImage() %>"  style="max-height: 80%; max-width: 70%;
 						margin-top: 2%; display: inline;"/>
 						<h4 class="checkout_title_product_name"><%=product.getName() %></h4>
@@ -76,7 +76,7 @@
 				</div>
 
         <div class="btn_form">
-          <form class="" action="" method="post">
+          <form class="" action="<%=request.getContextPath() %>/Buy?pro_id=<%=product.getId() %>" method="post">
             <input type="submit" value="checkout" title="" name="product_checkout_buy_btn">
           </form>
         </div>

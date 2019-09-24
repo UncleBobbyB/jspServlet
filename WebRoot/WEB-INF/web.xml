@@ -116,7 +116,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Buy</servlet-name>
-    <url-pattern>/buy</url-pattern>
+    <url-pattern>/Buy</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
